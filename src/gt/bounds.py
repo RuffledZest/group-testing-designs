@@ -2,7 +2,7 @@
 
 - Sperner: t(1, n) = min{t : C(t, floor(t/2)) >= n} (E. Sperner, Math. Z. 27 (1928); exact).
 - Recursion: t(d, n) >= min{n, d + 1 + t(d-1, n-1)}. Proved in
-  notes/proofs/lower-bound-recursion.md (column-removal + private-row lemmas). Any valid lower
+  docs/proofs/lower-bound-recursion.md (column-removal + private-row lemmas). Any valid lower
   bound may be used for t(d-1, n-1); we use the best of the three bounds here.
 - Counting: a d-disjunct matrix has distinct unions of <= d columns, so
   sum_{i<=d} C(n, i) <= 2^t. Proved in the same note.
@@ -27,8 +27,8 @@ from math import ceil, comb
 HZ_LABEL = ("exact (preprint Hu–Zhang 2026, third-party Lean formalisation; agrees with "
             "Huang–Hwang 2001 abstract)")
 LABELS = {"sperner": "Sperner (exact for d=1)",
-          "recursion": "recursion t>=min(n,d+1+t(d-1,n-1)) [proved: notes/proofs/lower-bound-recursion.md]",
-          "counting": "counting sum_{i<=d} C(n,i) <= 2^t [proved: notes/proofs/lower-bound-recursion.md]",
+          "recursion": "recursion t>=min(n,d+1+t(d-1,n-1)) [proved: docs/proofs/lower-bound-recursion.md]",
+          "counting": "counting sum_{i<=d} C(n,i) <= 2^t [proved: docs/proofs/lower-bound-recursion.md]",
           "furedi": "Furedi JCTA 1996 via Wei arXiv:2303.17524 Thm 2.7 [secondary]",
           "hu_zhang": HZ_LABEL}
 

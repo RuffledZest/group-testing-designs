@@ -22,6 +22,7 @@ Kautz–Singleton codes. Our contribution is:
 | `release/SHA256SUMS` | sha256 of every shipped data file |
 | `release/verify_release.py` | one-command re-verification |
 | `release/fetch_brouwer.py` | downloads Brouwer's files and rebuilds the derived designs |
+| `docs/` | written proofs of the lower bounds and the SAT checks cited in the tables |
 | `src/gt/` | verifiers, constructions, bounds and helpers used by the scripts |
 | `tests/` | `pytest` suite |
 
@@ -57,7 +58,8 @@ python release/fetch_brouwer.py && python release/verify_release.py
    - re-reads every matrix, shipped or rebuilt, and checks that its body matches the hash in its
      header;
    - re-verifies that each matrix is d-disjunct with both verifiers;
-   - checks the pool cap (and γ cap) of every shipped design in `capped_designs.csv`.
+   - checks the pool cap (and γ cap) of every design in `capped_designs.csv`, including the
+     rebuilt `rebuild:` designs, whose sha256 must also match the table.
 
 The full run takes roughly 20 to 30 minutes on a laptop. Add `--skip-large` for a quick run.
 `python -m pytest` runs the test suite, including the quick re-verification.
@@ -120,15 +122,14 @@ or hierarchical splitting can use fewer tests on average, but they need more rou
 - **`rebuild:…`:** derived from Brouwer's published constant-weight code files. These designs
   are not shipped; `fetch_brouwer.py` rebuilds them exactly.
 
-**References to `notes/…` and `data/…` paths** in `lower_bound_source` and similar columns point
-to write-ups in the authors' working notebook. They are not part of this repository:
-- the elementary lower-bound proofs: the recursion t(d, n) ≥ min(n, d + 1 + t(d−1, n−1)), the
-  counting bound, and the capped bounds;
-- the SAT encoding notes;
-- the SAT logs.
+**Proofs cited in the tables** (`docs/…` paths in the source and lower-bound columns):
+- `docs/proofs/lower-bound-recursion.md`: the recursion t(d, n) ≥ min(n, d + 1 + t(d−1, n−1))
+  and the counting bound, with the published results they follow from;
+- `docs/proofs/capped-lower-bounds.md`: lower bounds under a pool-size cap, Claims 1–9;
+- `docs/sat/disjunct-sat.md`: the SAT checks, covering the encoding, the soundness of the
+  symmetry breaking, and the results.
 
-The bounds themselves are implemented in `src/gt/bounds.py` and `src/gt/capped.py`. Their full
-written proofs are not yet included in this repository.
+The bounds are implemented in `src/gt/bounds.py` and `src/gt/capped.py`.
 
 ## Sources and credits
 

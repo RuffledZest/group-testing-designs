@@ -1,6 +1,6 @@
 """Target C: d-disjunct matrices whose rows (pools) have at most rho items.
 
-- ``capped_lower_bound(n, d, rho)``: proved bound, notes/proofs/capped-lower-bounds.md.
+- ``capped_lower_bound(n, d, rho)``: proved bound, docs/proofs/capped-lower-bounds.md.
 - ``select_columns(m, n, rho)``: choose n columns of a d-disjunct matrix so that every row has
   weight <= rho (a column subset of a d-disjunct matrix is d-disjunct). Greedy first, then SAT
   (python-sat CaDiCaL, cardinality constraints) if greedy falls short.
@@ -81,9 +81,9 @@ def capped_lower_bound(n: int, d: int, rho: int) -> tuple[int, str]:
     if t == t_unc:
         why.append("unconstrained bound")
     if not _claims_feasible(n, d, rho, t - 1) and t - 1 >= t_unc:
-        why.append("ones+private-pairs count (Claims 1-6)")
+        why.append("ones+private-pairs count (Claims 1-6, 9; docs/proofs/capped-lower-bounds.md)")
     if d == 1 and t - 1 >= t_unc and not _lym_feasible(n, rho, t - 1):
-        why.append("LYM + ones count")
+        why.append("LYM + ones count (Claim 8; docs/proofs/capped-lower-bounds.md)")
     return t, ", ".join(why) or "combined"
 
 

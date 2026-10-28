@@ -8,7 +8,10 @@
    Two independent verifiers are used, V1 (union cover) and V2 (permutation submatrix), which
    must agree on the margin z. For matrices too large for V2 (C(n, d+1) * t > 1e12), the exact
    intersection certificate is computed twice, independently.
-3. Every design listed in capped_designs.csv respects its pool cap (and gamma cap, if any).
+3. Every design listed in capped_designs.csv respects its pool cap (and gamma cap, if any). This
+   includes the `rebuild:` (Brouwer-derived) designs once fetch_brouwer.py has rebuilt them; their
+   rebuilt file must also have the sha256 recorded in the table. If release/rebuilt/ does not
+   exist yet, those designs are reported as not checked (run fetch_brouwer.py first).
 ``--skip-large`` skips matrices whose V2 work exceeds 1e9 (about 1 s each); the full run takes
 roughly 20-30 minutes on a laptop.
 Needs the repository's `src/` on the path (run from the repository root).
@@ -27,6 +30,38 @@ sys.path.insert(0, str(REL.parent / "src"))
 
 from gt.io import read_matrix  # noqa: E402
 from gt.verify import ic_bitset, ic_sets, v1_union, v2_perm  # noqa: E402
+
+
+def check_caps(rel: Path) -> tuple[int, int, int]:
+    """Check the pool cap (and gamma cap) of every design in capped_designs.csv.
+
+    `rebuild:` designs are read from rel/rebuilt/matrices/ and must also match the table's sha256.
+    Returns (problems, rebuild: designs checked, rebuild: designs skipped because rel/rebuilt/
+    does not exist). A missing file inside an existing rel/rebuilt/ counts as a problem."""
+    bad = n_rebuild = n_missing = 0
+    for r in csv.DictReader((rel / "capped_designs.csv").open(encoding="utf-8")):
+        if not r["design"]:
+            continue
+        if r["design"].startswith("rebuild:"):
+            if not (rel / "rebuilt").is_dir():
+                n_missing += 1
+                continue
+            path = rel / "rebuilt" / "matrices" / r["design"][len("rebuild:"):]
+            if not path.is_file():
+                print(f"NOT REBUILT {r['design']}")
+                bad += 1
+                continue
+            n_rebuild += 1
+        else:
+            path = rel / r["design"]
+        m, _, digest = read_matrix(path)  # raises if the body hash does not match the header
+        if r["sha256"] and digest != r["sha256"]:
+            print(f"SHA256 MISMATCH {r['design']}")
+            bad += 1
+        if m.sum(1).max() > int(r["pool_cap_rho"]) or (r["gamma_cap"] and m.sum(0).max() > int(r["gamma_cap"])):
+            print(f"CAP VIOLATED {r['design']}")
+            bad += 1
+    return bad, n_rebuild, n_missing
 
 
 def main(skip_large: bool) -> None:
@@ -56,13 +91,12 @@ def main(skip_large: bool) -> None:
             print(f"NOT VERIFIED {f.relative_to(REL)}")
             bad += 1
         n_ok += ok
-    for r in csv.DictReader((REL / "capped_designs.csv").open(encoding="utf-8")):
-        if not r["design"] or r["design"].startswith("rebuild:"):
-            continue
-        m, _, _ = read_matrix(REL / r["design"])
-        if m.sum(1).max() > int(r["pool_cap_rho"]) or (r["gamma_cap"] and m.sum(0).max() > int(r["gamma_cap"])):
-            print(f"CAP VIOLATED {r['design']}")
-            bad += 1
+    cap_bad, n_rebuild, n_missing = check_caps(REL)
+    bad += cap_bad
+    if n_missing:
+        print(f"{n_missing} rebuild: designs not cap-checked: release/rebuilt/ is missing (run fetch_brouwer.py)")
+    else:
+        print(f"pool caps checked, including {n_rebuild} rebuild: designs")
     print(f"{n_ok} matrices verified, {n_skip} skipped (--skip-large), {bad} problems")
     raise SystemExit(1 if bad else 0)
 

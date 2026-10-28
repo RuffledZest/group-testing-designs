@@ -7,7 +7,7 @@ x[r][c] = 1 and x[r][s] = 0 for s in S. Encoded with one auxiliary y(c,S,r) per 
 (Only the direction y -> "row r is private" is needed: any satisfying assignment gives a
 d-disjunct matrix, and any d-disjunct matrix extends to one by setting y = row-is-private.)
 
-Symmetry breaking (each optional, soundness argued in notes/sat/d2-t10.md):
+Symmetry breaking (each optional, soundness argued in docs/sat/disjunct-sat.md):
 - ``double_lex``: rows non-increasing and columns non-increasing in lexicographic order
   (row 0 / column 0 most significant). Row and column permutations preserve d-disjunctness and
   every 0/1 matrix has a row+column permutation that is doubly lex ordered (Flener et al.,

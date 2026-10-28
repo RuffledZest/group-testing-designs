@@ -35,7 +35,7 @@ PRIME_POWERS = [2, 3, 4, 5, 7, 8, 9, 11, 13, 16, 17, 19, 23, 25, 27, 29, 31, 32]
 MACNEISH = [(3, 4), (3, 5), (4, 5), (3, 7), (4, 7), (3, 8), (5, 7), (4, 9), (5, 8), (3, 11), (7, 8)]
 # (v, k, s): found in seconds by cyclic_difference_packing (Phase 1)
 CYCLIC_PACKINGS = [(96, 4, 4), (77, 4, 5)]
-# found by cyclic_difference_packing(75, 4, 6) in 1597 s (Phase 1, data/sat/log_pack75.txt)
+# found by cyclic_difference_packing(75, 4, 6) in 1597 s
 STORED_PACKINGS = [(75, 4, [[0, 1, 3, 7], [0, 5, 13, 25], [0, 9, 30, 48], [0, 10, 29, 53],
                             [0, 11, 34, 49], [0, 14, 31, 47]])]
 
