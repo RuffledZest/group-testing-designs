@@ -1,0 +1,17 @@
+# d: 4
+# t: 9
+# n: 9
+# method: identity
+# parameters: t=9
+# source: trivial (individual testing)
+# seed: none (deterministic)
+# sha256: 8fa305e14b712d5828a6b763e16321129d44bb0f4abaee8f2f05ab8e7cf005b6
+100000000
+010000000
+001000000
+000100000
+000010000
+000001000
+000000100
+000000010
+000000001

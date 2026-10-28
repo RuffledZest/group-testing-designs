@@ -1,0 +1,16 @@
+# d: 2
+# t: 8
+# n: 8
+# method: identity
+# parameters: t=8
+# source: trivial (individual testing)
+# seed: none (deterministic)
+# sha256: cdede8bff903a10d7950a6ac9dfddc9613cb516948ca1a7800f4ac405faaaab6
+10000000
+01000000
+00100000
+00010000
+00001000
+00000100
+00000010
+00000001

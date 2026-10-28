@@ -1,0 +1,18 @@
+# d: 2
+# t: 10
+# n: 13
+# method: triple_packing_sat
+# parameters: SAT (CaDiCaL 1.9.5, packing_sat k=3 size=13)
+# source: search.packing_sat; size = Schoenheim bound D(t,3,2)
+# seed: none (deterministic)
+# sha256: 00307a805c59b1fdca23323753b3b7ea1cd6d2397a53fe0efdfad7fccaa5ddbc
+1111000000000
+1000111000000
+1000000111000
+0100100100100
+0010000010010
+0010100001001
+0000010001110
+0001001010100
+0100001000011
+0001010100001

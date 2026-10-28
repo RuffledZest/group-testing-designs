@@ -1,0 +1,13 @@
+# d: 4
+# t: 5
+# n: 5
+# method: identity
+# parameters: t=5
+# source: trivial (individual testing)
+# seed: none (deterministic)
+# sha256: 2ea5981f2bf37a4af41813dc529a1dcf13dee747dd1d0708440891ad4c57cfd5
+10000
+01000
+00100
+00010
+00001

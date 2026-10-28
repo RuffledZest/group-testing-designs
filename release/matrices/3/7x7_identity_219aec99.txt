@@ -1,0 +1,15 @@
+# d: 3
+# t: 7
+# n: 7
+# method: identity
+# parameters: t=7
+# source: trivial (individual testing)
+# seed: none (deterministic)
+# sha256: 219aec9919fe16e995a5b5196d1f52ae7cd6518f25955a2d09a7905cbe085b17
+1000000
+0100000
+0010000
+0001000
+0000100
+0000010
+0000001

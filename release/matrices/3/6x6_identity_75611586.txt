@@ -1,0 +1,14 @@
+# d: 3
+# t: 6
+# n: 6
+# method: identity
+# parameters: t=6
+# source: trivial (individual testing)
+# seed: none (deterministic)
+# sha256: 75611586f303bf531527e71497de42ca4370d097a818db8732c98546cea810a8
+100000
+010000
+001000
+000100
+000010
+000001

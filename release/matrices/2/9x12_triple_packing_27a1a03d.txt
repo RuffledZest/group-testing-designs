@@ -1,0 +1,17 @@
+# d: 2
+# t: 9
+# n: 12
+# method: triple_packing
+# parameters: STS(9) (Bose)
+# source: triple_systems.packing (Lindner-Rodger Bose/Skolem STS, point deletion, greedy)
+# seed: none (deterministic)
+# sha256: 27a1a03dafe5d953ba2cce18bc60cec0e4ee017d0f25418fb2995e900d4b673d
+100100100001
+100010010100
+100001001010
+010100001100
+010010100010
+010001010001
+001001100100
+001100010010
+001010001001

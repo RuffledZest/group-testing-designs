@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use these designs or tables, please cite them as below, and cite the original sources named for each cell."
+title: "group-testing-designs: verified d-disjunct matrices and pool-size-capped pooling designs"
+type: dataset
+authors:
+  - alias: RuffledZest
+version: 0.1.0
+license:
+  - CC-BY-4.0
+  - MIT
+repository-code: "https://github.com/RuffledZest/group-testing-designs"
+keywords:
+  - group testing
+  - pooling designs
+  - disjunct matrices
+  - cover-free families
